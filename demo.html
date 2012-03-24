@@ -15,15 +15,15 @@
     };
     
     when(callback, 100).then(function(a, b) {
-	    document.getElementById('output').innerHTML += 'first callback'
-	      + '\na = ' + a
-	      + '\nb = ' + b
-	      + '<hr />';
-	  }, 1, 2).then(function() {
-	    document.getElementById('output').innerHTML += 'second callback'
+      document.getElementById('output').innerHTML += 'first callback'
+        + '\na = ' + a
+        + '\nb = ' + b
         + '<hr />';
-	  });
-	  
+    }, 1, 2).then(function() {
+      document.getElementById('output').innerHTML += 'second callback'
+        + '<hr />';
+    });
+    
 	  when(callback, 1000, 5).then(function() {
       document.getElementById('output').innerHTML += 'CLICKED IN 5 SECONDS<hr>';
     }).not(function() {
@@ -32,10 +32,10 @@
   </script>
 </head>
 <body>
-	<input type="button" id="input" onclick="this.value='clicked'" value="clickme" />
-	
-	<hr />
-	
-	<pre id="output"></pre>
+  <input type="button" id="input" onclick="this.value='clicked'" value="clickme" />
+  
+  <hr />
+  
+  <pre id="output"></pre>
 </body>
 </html>
