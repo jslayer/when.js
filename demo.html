@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
-	<meta charset="UTF-8">
-	<title>javascript when : demo page</title>
-	<script src="when.js"></script>
-	<script>
+  <meta charset="UTF-8">
+  <title>javascript when : demo page</title>
+  <script src="when.js"></script>
+  <script>
 	  var callback = function() {
       arguments.callee.input = arguments.callee.input || document.getElementById('input');
       
@@ -29,7 +29,7 @@
     }).not(function() {
       document.getElementById('output').innerHTML += 'NOT CLICKED IN 5 SECONDS<hr>';
     });
-	</script>
+  </script>
 </head>
 <body>
 	<input type="button" id="input" onclick="this.value='clicked'" value="clickme" />
