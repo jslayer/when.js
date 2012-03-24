@@ -24,7 +24,7 @@
         + '<hr />';
     });
     
-	  when(callback, 1000, 5).then(function() {
+    when(callback, 1000, 5).then(function() {
       document.getElementById('output').innerHTML += 'CLICKED IN 5 SECONDS<hr>';
     }).not(function() {
       document.getElementById('output').innerHTML += 'NOT CLICKED IN 5 SECONDS<hr>';
