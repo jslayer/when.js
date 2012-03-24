@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>javascript when : demo page</title>
+	<script src="when.js"></script>
+	<script>
+	  var callback = function() {
+      arguments.callee.input = arguments.callee.input || document.getElementById('input');
+      
+      if (arguments.callee.input && arguments.callee.input.value != 'clickme') {
+        return true;
+      }
+      return false;
+    };
+    
+	  when(callback, 100).then(function(a, b) {
+	    document.getElementById('output').innerHTML += 'first callback'
+	      + '\na = ' + a
+	      + '\nb = ' + b
+	      + '<hr />';
+	  }, 1, 2).then(function() {
+	    document.getElementById('output').innerHTML += 'second callback'
+        + '<hr />';
+	  });
+	  
+	  when(callback, 1000, 5).then(function() {
+      document.getElementById('output').innerHTML += 'CLICKED IN 5 SECONDS<hr>';
+    }).not(function() {
+      document.getElementById('output').innerHTML += 'NOT CLICKED IN 5 SECONDS<hr>';
+    });
+	</script>
+</head>
+<body>
+	<input type="button" id="input" onclick="this.value='clicked'" value="clickme" />
+	
+	<hr />
+	
+	<pre id="output"></pre>
+</body>
+</html>
