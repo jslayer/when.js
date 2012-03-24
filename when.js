@@ -10,7 +10,7 @@
  */
 
 var when = (function() {
-  var _check;
+  var _check, _then, _stop;
   
   _check = function() {
     return !!(this.type == 'fn' ? this.iff() : this.iff);
