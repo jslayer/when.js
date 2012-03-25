@@ -10,38 +10,38 @@
  */
 
 var when = (function() {
-  var _check, _then, _stop, _when;
-  
-  _check = function() {
-    return !!(this.type == 'fn' ? this.iff() : this.iff);
-  };
-  
-  _then = function() {
-    for(i=0; i<this._do.length; i++) {
-      this._do[i].fn.apply(null,this._do[i].args);
-    }
-  };
-  
-  _stop = function() {
-    clearInterval(this.timer);
-    if (typeof(this.not) == 'function') {
-      this.not(this);
-    }
-  };
-  
   _when = (function() {
-    var i = 0, args = arguments, self = this;
+    var _check, _then, _stop, _when,
+        i = 0, args = arguments, self = this,
+        _do, _not, iff, delay, attempts, type, timer;
+  
+    _check = function() {
+      return !!(type == 'fn' ? iff() : iff);
+    };
     
-    this._do = [];
-    this.not = false;
-    this.iff = args[0];
-    this.delay = !args[1] || typeof(args[1]) != 'number' || args[1] < 5 ? 100 : args[1]; 
-    this.attempts = !args[2] || typeof(args[2]) != 'number' || args[2] < 0 ? 0 : args[2];
-    this.type  = typeof(this.iff) == 'function' ? 'fn' : 'plain';
+    _then = function() {
+      for(i=0; i<_do.length; i++) {
+        _do[i].fn.apply(null,_do[i].args);
+      }
+    };
     
-    this.then = function(c) {
+    _stop = function() {
+      clearInterval(timer);
+      if (typeof(_not) == 'function') {
+        _not(this);
+      }
+    };
+    
+    _do = [];
+    not = false;
+    iff = args[0];
+    delay = !args[1] || typeof(args[1]) != 'number' || args[1] < 5 ? 100 : args[1]; 
+    attempts = !args[2] || typeof(args[2]) != 'number' || args[2] < 0 ? 0 : args[2];
+    type  = typeof(iff) == 'function' ? 'fn' : 'plain';
+    
+    then = function(c) {
       if (typeof(c) == 'function') {
-        this._do.push({
+        _do.push({
           fn: c,
           args: Array.prototype.slice.call(arguments, 1)
         });        
@@ -49,33 +49,37 @@ var when = (function() {
       return this;
     };
     
-    this.not = function(c) {
+    not = function(c) {
       if (typeof(c) == 'function') {
-        this.not = c;
+        _not = c;
       }
       return this;
     };
     
-    if (_check.call(this)) {
-      _then.call(this);
+    if (_check()) {
+      _then();
     }
     else {
-      this.timer = setInterval(function() {
-        if (_check.call(self)) {
-          clearInterval(self.timer);
-          _then.call(self);
+      timer = setInterval(function() {
+        if (_check()) {
+          clearInterval(timer);
+          _then();
           return;
         }
         
-        if (self.attempts > 0 && self.attempts <= ++i) {
-          _stop.call(self);
+        if (attempts > 0 && attempts <= ++i) {
+          _stop();
         }
-      }, this.delay);
+      }, delay);
     }
     
-    return this;
+    return {
+      then: then,
+      not: not
+    };
   });
   
   return _when.apply({}, arguments);
 });
+
 
