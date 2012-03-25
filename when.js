@@ -10,7 +10,7 @@
  */
 
 var when = (function() {
-  var _check, _then, _stop;
+  var _check, _then, _stop, _when;
   
   _check = function() {
     return !!(this.type == 'fn' ? this.iff() : this.iff);
@@ -29,7 +29,7 @@ var when = (function() {
     }
   };
   
-  var _when = (function() {
+  _when = (function() {
     var i = 0, args = arguments, self = this;
     
     this._do = [];

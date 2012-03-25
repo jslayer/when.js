@@ -1,6 +1,10 @@
 #Javascript when
 
-Execute second callback when first is true
+Simple function which is execute second callback when first is true.
+
+##Compatibility
+
+ie6+, chrome ?+
 
 ##Usage
 
