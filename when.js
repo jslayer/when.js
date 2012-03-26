@@ -13,7 +13,7 @@ var when = (function() {
   _when = (function() {
     var _then, _stop, _when,
         i = 0, args = arguments, self = this,
-        _do, _not, iff, delay, attempts, type, timer;
+        _do, _not, iff, delay, attempts, timer;
   
     _then = function() {
       for(i=0; i<_do.length; i++) {
@@ -32,7 +32,6 @@ var when = (function() {
     iff = args[0] && typeof(args[0]) == 'function' ? args[0] : false;
     delay = !args[1] || typeof(args[1]) != 'number' || args[1] < 5 ? 100 : args[1]; 
     attempts = !args[2] || typeof(args[2]) != 'number' || args[2] < 0 ? 0 : args[2];
-    type  = typeof(iff) == 'function' ? 'fn' : 'plain';
     
     if (!iff) {
       _stop();
