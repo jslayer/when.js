@@ -4,10 +4,10 @@ Simple function which is execute second callback when first is true.
 
 ##Compatibility
 
-ie6+, chrome ?+
+ie6+ & adequate browsers
 
 ##Usage
 
     when(boolean_callback[, delay, attempts])
-      .then(custom_callback, arg[0], arg[1], ...)[.then(...)][.then(...)]
+      .then(custom_callback[, arg[0], arg[1], ...])[.then(...)][.then(...)]
       .not(not_callback);
